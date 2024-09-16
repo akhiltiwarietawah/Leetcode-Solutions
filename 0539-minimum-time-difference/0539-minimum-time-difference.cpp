@@ -19,7 +19,7 @@ public:
         for(int i = 0; i < 1440; i++) {
             if(minutes[i]) {
                 if(prevIndex != INT_MAX) {
-                    ans = min(ans, prevIndex);
+                    ans = min(ans,i - prevIndex);
                 }
                 prevIndex = i;
                 if(firstIndex == INT_MAX) {

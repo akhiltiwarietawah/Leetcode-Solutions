@@ -24,10 +24,10 @@ public:
             minutes[min] = true;
         }  
 
-        int prevIndex = INT_MAX;
-        int firstIndex = INT_MAX;
-        int lastIndex = INT_MAX;
-        int ans = INT_MAX;
+        int prevIndex = 1500;
+        int firstIndex = 1500;
+        int lastIndex = 1500;
+        int ans = 1500;
 
         for(int i = 0; i < 1440; i++) {
             if(minutes[i]) {

@@ -1,6 +1,19 @@
 class Solution {
 public:
     int findMinDifference(vector<string>& timePoints) {
+        // Optimization macros
+    #pragma GCC optimize("Ofast")
+    #pragma GCC target("avx,avx2,fma") // Enable vectorization instructions (if supported by your machine)
+
+    // Shortcuts for common data types
+    typedef long long ll;
+    typedef vector<int> vi;
+    typedef pair<int, int> pii;
+
+    // Fast input/output
+    #define FAST_IO ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
+    #define pb push_back
+    #define all(v) v.begin(), v.end()
         vector<bool> minutes(1440, false);
 
         for(string time : timePoints) {

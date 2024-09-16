@@ -31,11 +31,11 @@ public:
 
         for(int i = 0; i < 1440; i++) {
             if(minutes[i]) {
-                if(prevIndex != INT_MAX) {
+                if(prevIndex != 1500) {
                     ans = min(ans,i - prevIndex);
                 }
                 prevIndex = i;
-                if(firstIndex == INT_MAX) {
+                if(firstIndex == 1500) {
                     firstIndex = i;
                 }
                 lastIndex = i;

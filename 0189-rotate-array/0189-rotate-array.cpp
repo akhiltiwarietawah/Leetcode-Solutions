@@ -16,25 +16,38 @@
 
 
 
-// Method 2 using Cyclic replacement
+// // Method 2 using Cyclic replacement
+// class Solution {
+// public:
+//     void rotate(vector<int>& nums, int k) {
+//         int n = nums.size();
+//         k %= n;
+//         int count = 0;
+//         for(int start = 0; count < n; start++){
+//             int current = start;
+//             int prev = nums[start];
+
+//             do{
+//                 int next = (current + k)%n;
+//                 int temp =  nums[next];
+//                 nums[next] = prev;
+//                 prev = temp;
+//                 current = next;
+//                 count++;
+//             }while(start != current);
+//         }
+//     }
+// };
+
+
+// METHOD 3 best using reverse TC = O(N)
 class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
-        int n = nums.size();
-        k %= n;
-        int count = 0;
-        for(int start = 0; count < n; start++){
-            int current = start;
-            int prev = nums[start];
+        k %= nums.size();
 
-            do{
-                int next = (current + k)%n;
-                int temp =  nums[next];
-                nums[next] = prev;
-                prev = temp;
-                current = next;
-                count++;
-            }while(start != current);
-        }
+        reverse(nums.begin(), nums.end());
+        reverse(nums.begin(), nums.begin() + k);
+        reverse(nums.begin() + k, nums.end());
     }
 };

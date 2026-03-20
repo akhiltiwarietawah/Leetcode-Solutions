@@ -1,42 +1,54 @@
 class Solution {
 public:
-    vector<vector<int>> minAbsDiff(vector<vector<int>>& grid, int k) {
-        int m = grid.size();
-        int n = grid[0].size();
-        int rows = m - k + 1;
-        int cols = n - k + 1;
+    vector<vector<int>> minAbsDiff(vector<vector<int>>& grid, int h) {
         
-        vector<vector<int>> ans(rows, vector<int>(cols, 0));
-        
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                
-                // k x k submatrix ke saare values collect karo
-                vector<int> values;
-                for (int r = i; r < i + k; r++) {
-                    for (int c = j; c < j + k; c++) {
-                        values.push_back(grid[r][c]);
+        const int n = grid.size();      // rows
+        const int m = grid[0].size();   // cols
+
+        // Result matrix banao (m-h+1) x (n-h+1) size ka
+        std::vector<std::vector<int>> arr(n - h + 1,
+                                          std::vector<int>(m - h + 1));
+
+        // ⭐ KEY OPTIMIZATION — ek baar memory reserve karo
+        std::vector<int> v;
+        v.reserve(h * h);  // k*k = max elements jo submatrix mein ho sakte hain
+
+        for (int i = 0; i < n - h + 1; ++i) {
+            for (int j = 0; j < m - h + 1; ++j) {
+
+                // Submatrix ke elements collect karo
+                for (int k = i; k < i + h; ++k) {
+                    for (int l = j; l < j + h; ++l) {
+                        v.push_back(grid[k][l]);
                     }
                 }
-                
-                // Sort karo
-                sort(values.begin(), values.end());
-                
-                int minDiff = INT_MAX;
-                int prev = values[0];
-                
-                for (int idx = 1; idx < (int)values.size(); idx++) {
-                    if (values[idx] != prev) {
-                        minDiff = min(minDiff, values[idx] - prev);
-                        prev = values[idx];
+
+                if (v.size() > 1) {  // k=1 ka edge case handle
+                    
+                    std::sort(v.begin(), v.end());  // sort karo
+
+                    int min = std::numeric_limits<int>::max();  // INT_MAX
+                    int x = 0;
+
+                    while (x < v.size() - 1) {
+                        if (v[x] != v[x + 1]) {  // duplicates skip karo
+                            min = std::min(min, v[x + 1] - v[x]);
+                        }
+                        x++;
                     }
+
+                    // Agar min change nahi hua → saare same values
+                    arr[i][j] = (min == std::numeric_limits<int>::max()) ? 0 : min;
+
+                } else {
+                    arr[i][j] = 0;  // sirf ek element → diff = 0
                 }
-                
-                // Agar saare values same hain toh 0, warna minDiff
-                ans[i][j] = (minDiff == INT_MAX) ? 0 : minDiff;
+
+                // ⭐ KEY OPTIMIZATION — memory free nahi hoti, sirf size = 0
+                v.resize(0);
             }
         }
-        
-        return ans;
+
+        return arr;
     }
 };

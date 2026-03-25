@@ -8,6 +8,7 @@ Collection of LeetCode questions to ace the coding interview! - Created using [L
 | ------- | ------- |
 | [0026-remove-duplicates-from-sorted-array](https://github.com/akhiltiwarietawah/Leetcode-Solutions/tree/main/0026-remove-duplicates-from-sorted-array/) | Easy |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/akhiltiwarietawah/Leetcode-Solutions/tree/main/0121-best-time-to-buy-and-sell-stock/) | Easy |
+| [0485-max-consecutive-ones](https://github.com/akhiltiwarietawah/Leetcode-Solutions/tree/main/0485-max-consecutive-ones/) | Easy |
 | [3567-minimum-absolute-difference-in-sliding-submatrix](https://github.com/akhiltiwarietawah/Leetcode-Solutions/tree/main/3567-minimum-absolute-difference-in-sliding-submatrix/) | Medium |
 ## Sorting
 | Problem Name | Difficulty |
